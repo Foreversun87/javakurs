@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Hallo ich bin das RemoteRep
+=======
+Hallo ich bin ein Test
+>>>>>>> test.txt hinzugefügt

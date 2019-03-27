@@ -1,0 +1,250 @@
+plugins {
+  id "org.sonarqube" version "2.5"
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+
+apply from: "appTasks.txt"
+
+
+//
+sourceCompatibility=1.8
+targetCompatibility=1.8
+
+
+repositories
+{
+	   jcenter();
+}
+
+dependencies
+{   
+   	compile 'com.google.guava:guava:22.0'
+	compile 'org.apache.commons:commons-lang3:3.5'
+	compile 'commons-io:commons-io:2.5'
+	compile 'org.apache.commons:commons-collections4:4.1'
+	compile 'commons-cli:commons-cli:1.4'
+   
+   	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.8.2'
+   	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.2'   
+	
+    compile 'junit:junit:4.12'
+   	compile 'org.hamcrest:hamcrest-all:1.3'
+   	
+    compile 'joda-time:joda-time:2.9.9'
+
+   compile 'org.easymock:easymock:3.4'  
+   compile 'org.mockito:mockito-all:1.10.19'    
+   compile 'org.powermock:powermock-module-junit4:1.6.6'
+   compile 'org.powermock:powermock-api-mockito:1.6.6'  
+}
+
+
+
+
+// Anpassungen
+
+// Bereitstellung von Parameternamen f�r Reflection 
+tasks.withType(JavaCompile) {
+	options.compilerArgs << "-parameters"
+}
+
+tasks.withType(Test) {
+	ignoreFailures = true
+}
+
+test {
+	// f�r die Beispiele wollen wir Fehler nicht als Build-Fehler werten, da die Beispiel
+	// bewusst ein paar Fehler integriert haben
+  	ignoreFailures = true
+}
+
+
+// ------------------------------ SOURCE CHECKER ------------------------------------
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.12'
+    testCompile 'junit:junit:4.12'
+}
+
+// Sourcecode-Checker
+apply plugin: 'checkstyle'
+
+tasks.withType(Checkstyle) {
+	ignoreFailures = true
+}
+
+task showCheckstyleHtmlReport { doLast {
+   if (file("$buildDir/reports/checkstyle/main.xml").exists()) {
+	  ant.xslt(in: "$buildDir/reports/checkstyle/main.xml",
+			style:"config/checkstyle/checkstyle-noframes-sorted.xsl",
+			out:"$buildDir/reports/checkstyle/checkstyle_main.html")	
+	}
+	
+	File file = file("$buildDir/reports/checkstyle/checkstyle_main.html")
+	java.awt.Desktop.desktop.browse file.toURI()	
+} }
+
+apply plugin: 'pmd'
+
+pmd 
+{	
+	toolVersion = '5.6.1'
+	ruleSets = [ "java-basic", "java-design" ]  // "java-strings", "java-braces" 
+}
+
+tasks.withType(Pmd) {
+    
+    ignoreFailures = true			// execute all the other checkers too
+    
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+task showPmdReport { doLast {
+	File file = file("$buildDir/reports/pmd/main.html")
+	java.awt.Desktop.desktop.browse file.toURI()	
+} }
+
+apply plugin: 'findbugs'
+
+tasks.withType(FindBugs) {
+    
+    ignoreFailures = true			// execute all the other checkers too
+    
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+task showFindBugsReport { doLast {
+	File file = file("$buildDir/reports/findbugs/main.html")
+	java.awt.Desktop.desktop.browse file.toURI()	
+} }
+
+
+apply plugin: 'jacoco'
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+    }
+}
+
+test.finalizedBy(project.tasks.jacocoTestReport)
+	
+task showJacocoTestReport { doLast {
+	File file = file("$buildDir/reports/jacoco/test/html/index.html")
+	java.awt.Desktop.desktop.browse file.toURI()	
+} }
+
+
+
+
+
+// ---------------------------------- DISTRIBUTION / EXECUTABLES ------------------------------
+
+task copyRequiredLibs(type: Copy) {
+   from configurations.runtime
+   into "$buildDir/libs/requiredLibs"
+}
+
+jar {
+
+  dependsOn copyRequiredLibs
+  
+  baseName = "Java-Profi-all"
+  
+  manifest {
+    attributes(
+               "Created-By"             : "Michael Inden",
+	                "Specification-Title"    : "Java-Profi",
+	                "Specification-Version"  : "4",
+	                "Specification-Vendor"   : "Michael Inden",
+	                "Implementation-Title"   : "Java-Profi",
+	                "Implementation-Version" : "4",
+	                "Implementation-Vendor"  : "Michael Inden",	     
+      "Class-Path": configurations.runtime.collect { "requiredLibs/" + it.getName() }.join(' '))
+  }
+  
+  // JAR-Dateien mit aufnehmen, dann kann man diese bei Bedarf separat entpacken
+  into('requiredLibs') {
+  	FileCollection collection = files("$buildDir/libs/requiredLibs")
+  	from { collection.collect { it } }
+  }  
+}
+
+// Eigene Tasks
+// ------------
+
+// Alle Java-Profi Tasks anzeigen
+task allJavaProfiTasks(group: "Java_Profi") { doLast {    
+    tasks.each {
+        task -> if (task.group != null && task.group.startsWith('Java_Profi_Chapter_')) {
+        	println(task.name)
+        }
+    }
+} }
+
+// Alle Java-Profi Tasks anzeigen eines Kapitels anzeigen: gradle tasksForChapter -Pch=4
+task tasksForChapter(group: "Java_Profi") { doLast {
+  
+    List allTasksNamesForChapter = []
+    tasks.each {
+        // nach Nummer
+	    task -> if (task.group != null && 
+	                                                                // Trick: sonst w�rde Abfrage nach 2 auch Kapitel 22 matchen
+	               ((task.group.startsWith('Java_Profi_Chapter_'+ch+'_')))) {
+    	    allTasksNamesForChapter += task.name
+        }
+    }
+
+	if (allTasksNamesForChapter.size() == 0) {
+    	println("!!!!!!!! No tasks for chapter $ch !!!!!!!!")
+    }
+    else
+    {
+    	println("-------------------------------------------")
+    	println("Tasks for chapter $ch") 
+    	println("-------------------------------------------")
+		allTasksNamesForChapter.each {
+			name -> println name
+        } 
+    } 
+} }
+
+
+def executeClassFromBuild(final String mainName)  {
+   
+	javaexec {
+	   	main = mainName
+	   	classpath = files("${buildDir}/classes/main") 
+	   	classpath += files("${buildDir}/resources/main") 
+	   	classpath += files("${buildDir}/libs/requiredLibs/*")
+	}
+}
+
+def executeClass(final String mainName)  {
+   
+	javaexec {
+	   	main = mainName
+	   	classpath = files("${buildDir}/libs/Java-Profi-all.jar")
+	}
+}
+
+def executeClassWithAssertionsEnabled(final String mainName)  {
+   
+	javaexec {
+		jvmArgs = ['-ea']
+	   	main = mainName
+	   	classpath = files("${buildDir}/libs/Java-Profi-all.jar")
+	}
+}
+
+

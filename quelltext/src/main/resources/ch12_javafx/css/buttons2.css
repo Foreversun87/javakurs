@@ -1,0 +1,16 @@
+.button {
+            -fx-background-color: linear-gradient(dodgerblue, white 65%, darkblue);
+            -fx-text-fill: firebrick; 
+}
+
+.customloginbutton {-fx-text-fill: black; -fx-font-size: 18pt; -fx-font-weight: bold;
+		   -fx-background-color: radial-gradient(center 25% 25%, radius 50%, reflect,
+		                                         darkgray, lightgray 75%, darkgray);
+}
+
+#fancybutton {-fx-font-weight: bold; -fx-font-family: Dialog; -fx-font-size: 36pt;
+			  -fx-text-fill: linear-gradient(to left, darkviolet 15%, yellow 45%,
+			                                 red 75%, firebrick 85%); 
+			 -fx-background-color: linear-gradient(gray 10%, #ABCDEF 65%, lightgray 90%);
+		     -fx-effect: dropshadow( three-pass-box , black, 5, 0.2 , 2 , 3);
+}

@@ -1,0 +1,897 @@
+// -------------
+// CH 2
+// -------------
+
+task TestExample(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_02_profbuild') {
+
+	ignoreFailures = true
+	include '**/*TestExample*'
+}
+// doLast wird nur bei Ausführung ausgeführt, ansonsten würde es immer auch beim Test kompilieren erfolgen
+TestExample { doLast {
+	File file = file("$buildDir/reports/tests/TestExample/classes/ch02_profbuild.TestExample.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task InspectingJarExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_02_profbuild') { doLast { executeClass("ch02_profbuild.InspectingJarExample")  } }
+task ResourceAccessExample(type: JavaExec, group: 'Java_Profi_Chapter_02_profbuild') {
+
+	  classpath = files("src/main/resources/ch02_profbuild/gradle-example.jar")
+	  main = "ch02_profbuild.ResourceAccessExample"
+}
+
+
+
+// -------------
+// CH 03
+// -------------
+
+task ReferenceSemanticsExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.ReferenceSemanticsExample")  } }
+task CounterUsage 							(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.CounterUsage")  } }
+task CounterWithOverflowExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.CounterWithOverflowExample")  } }
+task FontAttributesExample					(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.FontAttributesExample")  } }
+task FontAttributesEnumExample				(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.FontAttributesEnumExample")  } }
+task ArrayStoreExceptionExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.varianz.ArrayStoreExceptionExample")  } }
+task CovariantReturnExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.varianz.CovariantReturnExample")  } }
+task OldStyleList 							(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.generics.OldStyleList")  } }
+task NewStyleList 							(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.generics.NewStyleList")  } }
+task GenericPairExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.generics.GenericPairExample")  } }
+task TypeErasureExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.generics.TypeErasureExample")  } }
+task GenericsCreationExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.generics.GenericsCreationExample")  } }
+task WrongGenericArrayCreation 				(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.generics.WrongGenericArrayCreation")  } }
+task GenericArrayCreation 					(dependsOn: jar, group: 'Java_Profi_Chapter_03_oodesign') { doLast { executeClass("ch03_oodesign.generics.GenericArrayCreation")  } }
+
+
+
+// --------------
+// CH 04
+// --------------
+
+task ToStringExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.basics.ToStringExample")  } }
+task PersonToStringExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.basics.PersonToStringExample")  } }
+task ArraysToStringExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.basics.ArraysToStringExample")  } }
+task SpielkarteExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.basics.SpielkarteExample")  } }
+task SpielkarteWithEqualsExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.basics.SpielkarteWithEqualsExample")  } }
+task EqualsSymmetrie 						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.basics.EqualsSymmetrie")  } }
+
+task DivisionRoundingProblems				(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.DivisionRoundingProblems")  } }
+task FloatPrecisionExample					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.FloatPrecisionExample")  } }
+task BinaryOctalHexadecimalExample			(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.BinaryOctalHexadecimalExample")  } }
+task ShortTruncationExample					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.ShortTruncationExample")  } }
+task IntegerOverflowExample					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.IntegerOverflowExample")  } }
+task MinValueTest 							(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.MinValueTest")  } }
+task IntegerDecodingProblemsExample			(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.IntegerDecodingProblemsExample")  } }
+task ParseNumberExample						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.ParseNumberExample")  } }
+task PrimitivesAndWrapperCompareExample 		(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.PrimitivesAndWrapperCompareExample")  } }
+task AutoBoxingCacheExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.AutoBoxingCacheExample")  } }
+task AutoBoxingUnboxingProblem 				(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.AutoBoxingUnboxingProblem")  } }
+task AutoBoxingAndMethodSignatureExample 	(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.AutoBoxingAndMethodSignatureExample")  } }
+task NumberOutputExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.NumberOutputExample")  } }
+task NumberOutputExampleSpecial 				(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.NumberOutputExampleSpecial")  } }
+task ExtractByteExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.primitives_and_wrappers.ExtractByteExample")  } }
+
+task CharSequenceEqualsExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.CharSequenceEqualsExample")  } }
+task StringCompareLiteralExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.StringCompareLiteralExample")  } }
+task StringImmutabiltyExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.StringImmutabiltyExample")  } }
+task StringFormatExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.StringFormatExample")  } }
+task StringFormatVarArgsExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.StringFormatVarArgsExample")  } }
+task StringTokenizerVersionExtractExample 	(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.StringTokenizerVersionExtractExample")  } }
+task RegExExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.RegExExample")  } }
+task RegExExampleImprovedPrint 				(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.RegExExampleImprovedPrint")  } }
+task RegExExampleVariants 					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.RegExExampleVariants")  } }
+task RegExExampleRanges 						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.RegExExampleRanges")  } }
+task RegExExampleRanges2 					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.RegExExampleRanges2")  } }
+task RegExExampleNewsTicker 					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.RegExExampleNewsTicker")  } }
+task StringSplitExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.stringhandling.StringSplitExample")  } }
+
+task DateAPIProblems 						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.datehandling.DateAPIProblems")  } }
+task DatePastExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.datehandling.DatePastExample")  } }
+task CalendarAPIExample						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.datehandling.CalendarAPIExample")  } }
+task DateCalculationExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.datehandling.DateCalculationExample")  } }
+task PersonDateBirthdayCalculationExample	(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.datehandling.PersonDateBirthdayCalculationExample")  } }
+task DateCompareExample						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.datehandling.DateCompareExample")  } }
+task PersonDateToStringExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.datehandling.PersonDateToStringExample")  } }
+task CalendarCalculationExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.datehandling.CalendarCalculationExample")  } }
+
+task CalculationInnerClassWithInterfaceExample 		(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.inner.CalculationInnerClassWithInterfaceExample")  } }
+
+task PathExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.fileio.PathExample")  } }
+task FileFilterExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.fileio.FileFilterExample")  } }
+task DirectoryObserver 						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.fileio.DirectoryObserver")  } }
+task StringEncodings 						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.fileio.StringEncodings")  } }
+task PersonStreamFileStream 					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.fileio.PersonStreamFileStream")  } }
+task PersonStreamPrintStream 				(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.fileio.PersonStreamPrintStream")  } }
+task ScannerExample							(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.fileio.ScannerExample")  } }
+task FileIOExample							(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.fileio.FileIOExample")  } }
+task PathOperationsExample					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.fileio.PathOperationsExample")  } }
+task DirectoryStreamExample					(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.fileio.DirectoryStreamExample")  } }
+task FilesJdk8Example						(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.fileio.FilesJdk8Example")  } }
+
+task AssertExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClass("ch04_javagrundlagen.errorhandling.AssertExample")  } }
+task AssertExampleWithMethods				(dependsOn: jar, group: 'Java_Profi_Chapter_04_javagrundlagen') { doLast { executeClassWithAssertionsEnabled("ch04_javagrundlagen.errorhandling.AssertExampleWithMethods")  } }
+
+
+
+// --------------
+// CH 05
+// --------------
+
+task LambdaAsParamAndReturnValueExample		(dependsOn: jar, group: 'Java_Profi_Chapter_05_lambdas') { doLast { executeClass("ch05_lambdas.LambdaAsParamAndReturnValueExample")  } }
+task DefaultMethodAndLambdaExample			(dependsOn: jar, group: 'Java_Profi_Chapter_05_lambdas') { doLast { executeClass("ch05_lambdas.DefaultMethodAndLambdaExample")  } }
+task FirstMethodReferenceExample				(dependsOn: jar, group: 'Java_Profi_Chapter_05_lambdas') { doLast { executeClass("ch05_lambdas.FirstMethodReferenceExample")  } }
+task FirstPredicatesExample					(dependsOn: jar, group: 'Java_Profi_Chapter_05_lambdas') { doLast { executeClass("ch05_lambdas.FirstPredicatesExample")  } }
+task ComplexPredicatesExample				(dependsOn: jar, group: 'Java_Profi_Chapter_05_lambdas') { doLast { executeClass("ch05_lambdas.ComplexPredicatesExample")  } }
+task UnaryOperatorExample					(dependsOn: jar, group: 'Java_Profi_Chapter_05_streams') { doLast { executeClass("ch05_lambdas.UnaryOperatorExample")  } }
+
+
+// --------------
+// CH 06
+// --------------
+
+task RemoveIfExample							(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.RemoveIfExample")  } }
+task IterationExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.IterationExample")  } }
+task IteratorCollectionRemoveExample 		(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.IteratorCollectionRemoveExample")  } }
+task IteratorRemoveCorrectedExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.IteratorRemoveCorrectedExample")  } }
+task IteratorDoubleRemoveExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.IteratorDoubleRemoveExample")  } }
+task FirstListExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.FirstListExample")  } }
+task SubListExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.SubListExample")  } }
+task ReplaceAllExample						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.ReplaceAllExample")  } }
+
+task FirstSetExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.FirstSetExample")  } }
+task HashSetStorageExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.HashSetStorageExample")  } }
+task HashSetStorageExample2 					(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.HashSetStorageExample2")  } }
+task TreeSetStorageExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.TreeSetStorageExample")  } }
+task TreeSetStorageExample2					(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.TreeSetStorageExample2")  } }
+task SpielkarteInHashSet 					(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.SpielkarteInHashSet")  } }
+task SpielkarteWithEqualsAndHashCode			(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.SpielkarteWithEqualsAndHashCode")  } }
+task ComparableExample						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.ComparableExample")  } }
+task PersonUsingComparableForEquals 			(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.PersonUsingComparableForEquals")  } }
+task LawOfBig3Example 						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.LawOfBig3Example")  } }
+task LawOfBig3Example2 						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.LawOfBig3Example2")  } }
+task LawOfBig3Example3 						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.LawOfBig3Example3")  } }
+task FirstMapExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.FirstMapExample")  } }
+task HashMapLookUpExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.HashMapLookUpExample")  } }
+task FixedSizeLinkedHashMapExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.FixedSizeLinkedHashMapExample")  } }
+task LruLinkedHashMapExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.LruLinkedHashMapExample")  } }
+task TreeMapExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.TreeMapExample")  } }
+task UpperCaseNormalizedHashMap				(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.basics.UpperCaseNormalizedHashMap")  } }
+
+task WordCountPreJDK8Example			    		(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.jdk8.map.WordCountPreJDK8Example" )  } }
+task WordCountPutIfAbsentReplaceExample	    (dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.jdk8.map.WordCountPutIfAbsentReplaceExample" )  } }
+task WordCountComputeIfExample			    (dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.jdk8.map.WordCountComputeIfExample" )  } }
+task WordCountMergeExample				    (dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.jdk8.map.WordCountMergeExample" )  } }
+
+
+task BinarySearchExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.searchsortfilter.BinarySearchExample")  } }
+task ListSortExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.searchsortfilter.ListSortExample")  } }
+task ArraysSortJdk8Example					(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.searchsortfilter.ArraysSortJdk8Example")  } }
+task PersonUniversalComparatorExample 		(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.searchsortfilter.PersonUniversalComparatorExample")  } }
+task NaturalOrderExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.searchsortfilter.NaturalOrderExample")  } }
+task NullSafeComparatorExample		    		(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.searchsortfilter.NullSafeComparatorExample" )  } }
+
+task ArraysAsListExample						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.utility.ArraysAsListExample")  } }
+task UnmodifiableUnexpectedExample			(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.utility.UnmodifiableUnexpectedExample")  } }
+task CheckedCollectionsExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.utility.CheckedCollectionsExample")  } }
+task AlgorithmsExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.utility.AlgorithmsExample")  } }
+task AlgorithmsExampleMinMax 				(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.utility.AlgorithmsExampleMinMax")  } }
+task AlgorithmsExampleShuffleReplaceAll 		(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.utility.AlgorithmsExampleShuffleReplaceAll")  } }
+
+task GenericsArrayPolymorphyExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.generics.GenericsArrayPolymorphyExample")  } }
+task GenericsArrayPolymorphy2Example 		(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.generics.GenericsArrayPolymorphy2Example")  } }
+
+task OptionalPrimitivesExamples				(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.optional.OptionalPrimitivesExample")  } }
+task OptionalAlternativesExample				(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.optional.OptionalAlternativesExample")  } }
+task OptionalSafeResolveExample				(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.optional.OptionalSafeResolveExample")  } }
+
+task ArrayCompareExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.traps.ArrayCompareExample")  } }
+task BesserIteratorAlsArray 					(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.traps.BesserIteratorAlsArray")  } }
+task ArrayCloneExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_06_collections') { doLast { executeClass("ch06_collections.traps.ArrayCloneExample")  } }
+
+
+
+// --------------
+// CH 07
+// --------------
+
+task PrimitivesStreamExample					(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.PrimitivesStreamExample")  } }
+task StreamFilterExample						(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.StreamFilterExample")  } }
+task AttributeExtractionExample				(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.AttributeExtractionExample")  } }
+
+task FlatMapExample							(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.FlatMapExample")  } }
+task FlatMapExample2							(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.FlatMapExample2")  } }
+task StreamPeekExample						(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.StreamPeekExample")  } }
+task SortedAndDistinctExample				(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.SortedAndDistinctExample")  } }
+
+task StreamToArrayExample					(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.terminal.StreamToArrayExample")  } }
+task CalculationExample						(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.terminal.CalculationExample")  } }
+task MatchExample							(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.terminal.MatchExample")  } }
+task ReduceExample							(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.terminal.ReduceExample")  } }
+task CollectorsSpecialExample				(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.terminal.CollectorsSpecialExample")  } }
+task FlatMapAndGroupingExample				(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.terminal.FlatMapAndGroupingExample")  } }
+
+task StreamProcessingExample					(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.parallel.StreamProcessingExample")  } }
+task StreamParallelProcessingExample			(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.parallel.StreamParallelProcessingExample")  } }
+task WrongParallelForEachExample				(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.parallel.WrongParallelForEachExample")  } }
+task ParallelFindAnyExample					(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.parallel.ParallelFindAnyExample")  } }
+
+task FilterMapReduceOldStyleExample			(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.filter_map_reduce.FilterMapReduceOldStyleExample")  } }
+task FilterMapReduceJDK8Example				(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.filter_map_reduce.FilterMapReduceJDK8Example")  } }
+
+task GroupingExample							(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.advanced.GroupingExample")  } }
+task HistogramExample						(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.advanced.HistogramExample")  } }
+task MapTraditionalSortExample				(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.advanced.MapTraditionalSortExample")  } }
+task SortByValueExample						(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.advanced.SortByValueExample")  } }
+task SortByValueExample2						(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.advanced.SortByValueExample2")  } }
+task SortByValueExample3						(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.advanced.SortByValueExample3")  } }
+task SortByValueExample4						(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.advanced.SortByValueExample4")  } }
+
+task ZipAnalyzerExampleJdk7					(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.advanced.zip.ZipAnalyzerExampleJdk7")  } }
+task ZipAnalyzerExampleJdk8					(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.advanced.zip.ZipAnalyzerExampleJdk8")  } }
+task ComplexZipAnalyzerJdk8Example			(dependsOn: jar, group: 'Java_Profi_Chapter_ch07_bulk_operations') { doLast { executeClass("ch07_bulk_operations.advanced.zip.ComplexZipAnalyzerJdk8Example")  } }
+
+
+
+// --------------
+// CH 08 App-Bausteine
+// --------------
+
+task StringUtilsExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.intro.StringUtilsExample")  } }
+task StringsExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.intro.StringsExample")  } }
+task JoinerExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.intro.JoinerExample")  } }
+task SplitterExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.intro.SplitterExample")  } }
+task SplitterImprovedExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.intro.SplitterImprovedExample")  } }
+task SetsExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.intro.SetsExample")  } }
+task MultimapExample							(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.intro.MultimapExample")  } }
+task MultimapJdkExample						(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.intro.MultimapJdkExample")  } }
+task BimapExample							(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.intro.BimapExample")  } }
+
+task RangeCheckUtilsTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_08_applikationsbausteine') {
+	include '**/*RangeCheckUtilsTest*'
+}
+RangeCheckUtilsTest { doLast {
+	File file = file("$buildDir/reports/tests/RangeCheckUtilsTest/classes/ch08_applikationsbausteine.ranges.RangeCheckUtilsTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task RangeExample							(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.ranges.RangeExample")  } }
+task RangeImprovedExample					(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.ranges.RangeImprovedExample")  } }
+task RangeSetExample							(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.ranges.RangeSetExample")  } }
+
+task LoggingExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.logging.LoggingExample")  } }
+task LogReadConfigExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClassFromBuild("ch08_applikationsbausteine.logging.LogReadConfigExample")  } }
+task ExceptionLoggingExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.logging.ExceptionLoggingExample")  } }
+task ExceptionLoggingImproved 				(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.logging.ExceptionLoggingImproved")  } }
+task LogCategoryExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClassFromBuild("ch08_applikationsbausteine.logging.LogCategoryExample")  } }
+
+task ArgsParsingExampleNaiv 					(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.configuration.ArgsParsingExampleNaiv")  } }
+task ArgsParsingExampleWithEnum 				(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.configuration.ArgsParsingExampleWithEnum")  } }
+task CommandLineParsingExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.configuration.CommandLineParsingExample")  } }
+task AppPropertiesFirst 						(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.configuration.AppPropertiesFirst")  } }
+task AppPropertiesProblems 					(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.configuration.AppPropertiesProblems")  } }
+task AppProperties 							(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.configuration.AppProperties")  } }
+task SystemPropertiesExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.configuration.SystemPropertiesExample")  } }
+task SystemEnvExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.configuration.SystemEnvExample")  } }
+task PreferencesExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.configuration.PreferencesExample")  } }
+task ReadHighscoresFromCsvExample			(dependsOn: jar, group: 'Java_Profi_Chapter_08_applikationsbausteine') { doLast { executeClass("ch08_applikationsbausteine.configuration.ReadHighscoresFromCsvExample")  } }
+
+
+
+// --------------
+// CH 09 Multithreading
+// --------------
+
+task ThreadExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.intro.ThreadExample")  } }
+task DumpThreadsExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.intro.DumpThreadsExample")  } }
+
+task ProducerConsumerSynchronisationExample 	(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.communication.ProducerConsumerSynchronisationExample")  } }
+task ProducerConsumerExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.communication.ProducerConsumerExample")  } }
+task ProducerMultiConsumerWrong1Example 		(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.communication.ProducerMultiConsumerWrong1Example")  } }
+task ProducerMultiConsumerWrong2Example 		(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.communication.ProducerMultiConsumerWrong2Example")  } }
+task ProducerMultiConsumerExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.communication.ProducerMultiConsumerExample")  } }
+task ProducerMultiConsumerSizedExample 		(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.communication.ProducerMultiConsumerSizedExample")  } }
+task ProducerMultiConsumerSizedExample2 		(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.communication.ProducerMultiConsumerSizedExample2")  } }
+task ProducerMultiConsumerSizedExample3 		(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.communication.ProducerMultiConsumerSizedExample3")  } }
+task ProducerConsumerBlockingQueueExample 	(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.communication.ProducerConsumerBlockingQueueExample")  } }
+task ProducerJoinExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.communication.ProducerJoinExample")  } }
+task IllegalMonitorStateExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.communication.IllegalMonitorStateExample")  } }
+
+task ExceptionInThreadsExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.specialities.ExceptionInThreadsExample")  } }
+
+task TimerTaskExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.specialities.TimerTaskExample")  } }
+task TimerTaskSchedulingExample				(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.specialities.TimerTaskSchedulingExample")  } }
+
+task FutureExampleWithRunnableAndResult 		(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.concurrency.FutureExampleWithRunnableAndResult")  } }
+task ExecutorServiceExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.concurrency.ExecutorServiceExample")  } }
+task ScheduledExecutorExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.concurrency.ScheduledExecutorExample")  } }
+task ScheduledExecutorServiceExample 		(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.concurrency.ScheduledExecutorServiceExample")  } }
+task ScheduledExecutorPeriodicExample 		(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.concurrency.ScheduledExecutorPeriodicExample")  } }
+task FibonacciTask	 						(dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.concurrency.FibonacciTask")  } }
+
+task FirstCompleteableFutureExample		    (dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.concurrency.FirstCompleteableFutureExample" )  } }
+task CompleteableFutureExample			    (dependsOn: jar, group: 'Java_Profi_Chapter_09_multithreading') { doLast { executeClass("ch09_multithreading.concurrency.CompleteableFutureExample" )  } }
+
+
+
+// --------------
+// CH 10 Advanced Java
+// --------------
+
+task ReflectionArrayClassesExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.reflection.ReflectionArrayClassesExample")  } }
+task ReflectionCallEqualsExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.reflection.ReflectionCallEqualsExample")  } }
+task InspectionExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.reflection.InspectionExample")  } }
+task ReflectionCtorExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.reflection.ReflectionCtorExample")  } }
+task AttributeAccessExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.reflection.AttributeAccessExample")  } }
+task TypeErasureAndTypeInfoExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.reflection.TypeErasureAndTypeInfoExample")  } }
+
+task AnnotationReaderExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.annotations.AnnotationReaderExample")  } }
+
+task SerializationExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.serializable.SerializationExample")  } }
+task DeserializationExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.serializable.DeserializationExample")  } }
+task SerializationOptimizationExample 		(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.serializable.SerializationOptimizationExample")  } }
+task SerializationOptimizationExample2 		(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.serializable.SerializationOptimizationExample2")  } }
+task SerializationOptimizationExample3 		(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.serializable.SerializationOptimizationExample3")  } }
+task SerializationForExternalizableClassExample (dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.serializable.SerializationForExternalizableClassExample")  } }
+task ExternalizableExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.serializable.ExternalizableExample")  } }
+
+task StaticProxyExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.dynamicproxy.StaticProxyExample")  } }
+task DynamicProxyExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.dynamicproxy.DynamicProxyExample")  } }
+task DynamicProxyCombinationExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.dynamicproxy.DynamicProxyCombinationExample")  } }
+
+task ListScriptingEngines 					(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.javascript_nashorn.ListScriptingEngines")  } }
+task SimpleJavaScriptAndBindingDemo			(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.javascript_nashorn.SimpleJavaScriptAndBindingDemo")  } }
+task DynamicCalculationExample				(dependsOn: jar, group: 'Java_Profi_Chapter_10_advancedjava') { doLast { executeClass("ch10_advancedjava.javascript_nashorn.DynamicCalculationExample")  } }
+
+// --------------
+// CH 11
+// --------------
+
+task MonthAndDayOfWeekExample				(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.MonthAndDayOfWeekExample")  } }
+task YearAndMoreExample						(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.YearAndMoreExample")  } }
+task InstantExample							(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.InstantExample")  } }
+task DurationExample							(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.DurationExample")  } }
+task DurationCreationExample					(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.DurationCreationExample")  } }
+task DurationCalculationExample				(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.DurationCalculationExample")  } }
+task DurationSpecialExample		    			(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.DurationSpecialExample")  } }
+task ChronoUnitExample						(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.ChronoUnitExample")  } }
+task LocalDateAndTimeExample					(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.LocalDateAndTimeExample")  } }
+task PeriodExample							(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.PeriodExample")  } }
+task PeriodCalculationExample				(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.PeriodCalculationExample")  } }
+task ZonedDateTimeExample					(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.ZonedDateTimeExample")  } }
+task ZoneIdExample							(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.ZoneIdExample")  } }
+task ZoneOffsetExample						(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.ZoneOffsetExample")  } }
+task FirstClockExample						(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.FirstClockExample")  } }
+task SecondClockExample						(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.SecondClockExample")  } }
+task FormattingAndParsingExample				(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.FormattingAndParsingExample")  } }
+task OldApiDurationCalculationExample		(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.OldApiDurationCalculationExample")  } }
+task NewApiDurationCalculationExample		(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.NewApiDurationCalculationExample")  } }
+task PredefinedTemporalAdjustersExample		(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.temporaladjusters.PredefinedTemporalAdjustersExample")  } }
+task PredefinedTemporalAdjustersExample2		(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.temporaladjusters.PredefinedTemporalAdjustersExample2")  } }
+task LegacyExample							(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.LegacyExample")  } }
+task DateToLocalDateExample					(dependsOn: jar, group: 'Java_Profi_Chapter_11_dateandtime') { doLast { executeClass("ch11_dateandtime.DateToLocalDateExample")  } }
+
+
+
+// --------------
+// CH 12
+// --------------
+
+task FirstJavaFxExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.basics.FirstJavaFxExample" )  } }
+task JavaFxActionHandlingExample				(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.basics.JavaFxActionHandlingExample" )  } }
+task LayoutCombinationExample				(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.layout.LayoutCombinationExample" )  } }
+task FirstHBoxExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.layout.FirstHBoxExample" )  } }
+task HBoxWithAlignmentsExample				(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.layout.HBoxWithAlignmentsExample" )  } }
+task ResizableHBoxExample					(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.layout.ResizableHBoxExample" )  } }
+task GridPaneExample							(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.layout.GridPaneExample" )  } }
+
+task FirstFxmlExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.fxml.FirstFxmlExample" )  } }
+task FXMLExampleWithSpecialController		(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.fxml.FXMLExampleWithSpecialController" )  } }
+task FirstCssExample							(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.css.FirstCssExample" )  } }
+task FXMLExampleWithCSS						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.fxml.FXMLExampleWithCSS" )  } }
+task ExternalCssExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.css.ExternalCssExample" )  } }
+task DynamicCssExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.css.DynamicCssExample" )  } }
+task ChangeExternalCssExample				(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.css.ChangeExternalCssExample" )  } }
+task JavaFxEffectsExample					(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.animations_and_effects.JavaFxEffectsExample" )  } }
+task AnimationExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.animations_and_effects.AnimationExample" )  } }
+task FirstGraphicNodesExample				(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.canvas.FirstGraphicNodesExample" )  } }
+task FirstCanvasExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.canvas.FirstCanvasExample" )  } }
+
+task FirstPropertyExample					(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.bindings.FirstPropertyExample" )  } }
+task FirstBindingExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.bindings.FirstBindingExample" )  } }
+task TextFieldAndSliderPropertyExample		(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.bindings.TextFieldAndSliderPropertyExample" )  } }
+
+task ObservableListExample					(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.observablecollections.ObservableListExample" )  } }
+task EditabelListViewExample					(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.observablecollections.EditabelListViewExample" )  } }
+task ListFilterableExample					(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.observablecollections.ListFilterableExample" )  } }
+task ListFilterableExampleImproved			(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.observablecollections.ListFilterableExampleImproved" )  } }
+
+task DialogsExample							(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.important_controls.DialogsExample" )  } }
+task FormattedTextFieldExample				(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.important_controls.FormattedTextFieldExample" )  } }
+task ComboBoxListViewExample					(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.important_controls.comboboxandlist.ComboBoxListViewExample" )  } }
+task ComboBoxListViewExample2				(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.important_controls.comboboxandlist.ComboBoxListViewExample2" )  } }
+task ComboBoxListViewExample3				(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.important_controls.comboboxandlist.ComboBoxListViewExample3" )  } }
+task TableViewExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.important_controls.table_treetable.TableViewExample" )  } }
+task TreeTableViewExample					(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.important_controls.table_treetable.TreeTableViewExample" )  } }
+task TreeTableViewExample2					(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.important_controls.table_treetable.TreeTableViewExample2" )  } }
+task FirstMenuExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.important_controls.FirstMenuExample" )  } }
+
+task MultiThreadingTaskExample				(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.multithreading.MultiThreadingTaskExample" )  } }
+
+task JavaFXInSwingExample					(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.swingmigration.JavaFXInSwingExample" )  } }
+task SwingNodeExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.swingmigration.SwingNodeExample" )  } }
+
+// Bonus
+task DatePickerExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.bonus.important_controls.DatePickerExample" )  } }
+task SpinnerExample							(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.bonus.important_controls.SpinnerExample" )  } }
+task SecondCanvasExample						(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.canvas.SecondCanvasExample" )  } }
+task FirstTreeViewExample					(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.important_controls.table_treetable.FirstTreeViewExample" )  } }
+
+task PieChartExample							(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.charts.PieChartExample" )  } }
+task LineAndScatterChartExample				(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.charts.LineAndScatterChartExample" )  } }
+task BarAndAreaChartExample					(dependsOn: jar, group: 'Java_Profi_Chapter_12_javafx') { doLast { executeClass("ch12_javafx.charts.BarAndAreaChartExample" )  } }
+
+
+
+// --------------
+// CH 13
+// --------------
+
+task LocaleExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.basics.LocaleExample")  } }
+task AvailableLocalesExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.basics.AvailableLocalesExample")  } }
+task PropertyResourceBundleExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.basics.PropertyResourceBundleExample")  } }
+task NumberFormatExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.basics.NumberFormatExample")  } }
+task NumberFormatParseExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.basics.NumberFormatParseExample")  } }
+task DateFormatExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.basics.DateFormatExample")  } }
+task DateFormatParseExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.basics.DateFormatParseExample")  } }
+task DateFormatParseToStringExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.basics.DateFormatParseToStringExample")  } }
+task MessageFormatExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.basics.MessageFormatExample")  } }
+task MessageFormatExample2 					(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.basics.MessageFormatExample2")  } }
+task CollatorStrengthExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.basics.CollatorStrengthExample")  } }
+task RuleBasedCollatorExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.basics.RuleBasedCollatorExample")  } }
+task MultipleDateFormatParsingExample1 		(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.utils.MultipleDateFormatParsingExample1")  } }
+task MultipleDateFormatParsingExample2 		(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.utils.MultipleDateFormatParsingExample2")  } }
+task MultipleDateFormatParsingExample1Jdk8  	(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.utils.MultipleDateFormatParsingExample1Jdk8")  } }
+task MultipleDateFormatParsingExample2Jdk8 	(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.utils.MultipleDateFormatParsingExample2Jdk8")  } }
+task MultipleDateFormatParsingExample3Jdk8	(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.utils.MultipleDateFormatParsingExample3Jdk8")  } }
+task ResourceManagerExampleJavaFX	 		(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.utils.ResourceManagerExampleJavaFX")  } }
+task ResourceManagerV2Example		 		(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.utils.ResourceManagerV2Example")  } }
+task ResourceManagerV2Example2JavaFX			(dependsOn: jar, group: 'Java_Profi_Chapter_13_advancedjava') { doLast { executeClass("ch13_i18n.utils.ResourceManagerV2Example2JavaFX")  } }
+
+
+// --------------
+// CH 14 Neuerungen in Java 9
+// --------------
+
+// in einem separaten Projekt bereitgestellt
+
+
+
+// --------------
+// CH 16
+// --------------
+
+task AbstractMethodInConstructorExample		(dependsOn: jar, group: 'Java_Profi_Chapter_16_badsmells') { doLast { executeClass("ch16_badsmells.AbstractMethodInConstructorExample")  } }
+task DontReturnNullExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_16_badsmells') { doLast { executeClass("ch16_badsmells.DontReturnNullExample")  } }
+task LogInitExceptionExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_16_badsmells') { doLast { executeClass("ch16_badsmells.LogInitExceptionExample")  } }
+task BadCaseExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_16_badsmells') { doLast { executeClass("ch16_badsmells.BadCaseExample")  } }
+
+
+// --------------
+// CH 17
+// --------------
+
+task NumberUtilsV1Test(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_17_refactorings') {
+
+	ignoreFailures = true
+
+	include '**/*NumberUtilsV1Test*'
+}
+NumberUtilsV1Test { doLast {
+	File file = file("$buildDir/reports/tests/NumberUtilsV1Test/classes/ch17_refactorings.NumberUtilsV1Test.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task NumberUtilsV2EmptyInputCorrectedTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_17_refactorings') {
+
+	ignoreFailures = true
+
+	include '**/*NumberUtilsV2EmptyInputCorrectedTest*'
+}
+NumberUtilsV2EmptyInputCorrectedTest { doLast {
+	File file = file("$buildDir/reports/tests/NumberUtilsV2EmptyInputCorrectedTest/classes/ch17_refactorings.NumberUtilsV2EmptyInputCorrectedTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task NumberUtilsV2NullInputTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_17_refactorings') {
+
+	ignoreFailures = true
+
+	include '**/*NumberUtilsV2NullInputTest*'
+}
+NumberUtilsV2NullInputTest { doLast {
+	File file = file("$buildDir/reports/tests/NumberUtilsV2NullInputTest/classes/ch17_refactorings.NumberUtilsV2NullInputTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task NumberUtilsV3NullInputCorrectedTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_17_refactorings') {
+
+	ignoreFailures = true
+
+	include '**/*NumberUtilsV3NullInputCorrectedTest*'
+}
+NumberUtilsV3NullInputCorrectedTest { doLast {
+	File file = file("$buildDir/reports/tests/NumberUtilsV3NullInputCorrectedTest/classes/ch17_refactorings.NumberUtilsV3NullInputCorrectedTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task NumberUtilsV4CombinedConditionsTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_17_refactorings') {
+
+	ignoreFailures = true
+
+	include '**/*NumberUtilsV4CombinedConditionsTest*'
+}
+NumberUtilsV4CombinedConditionsTest { doLast {
+	File file = file("$buildDir/reports/tests/NumberUtilsV4CombinedConditionsTest/classes/ch17_refactorings.NumberUtilsV4CombinedConditionsTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task NumberUtilsV4SignTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_17_refactorings') {
+
+	ignoreFailures = true
+
+	include '**/*NumberUtilsV4SignTest*'
+}
+NumberUtilsV4SignTest { doLast {
+	File file = file("$buildDir/reports/tests/NumberUtilsV4SignTest/classes/ch17_refactorings.NumberUtilsV4SignTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task NumberUtilsV5SignTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_17_refactorings') {
+
+	ignoreFailures = true
+
+	include '**/*NumberUtilsV5SignTest*'
+}
+NumberUtilsV5SignTest { doLast {
+	File file = file("$buildDir/reports/tests/NumberUtilsV5SignTest/classes/ch17_refactorings.NumberUtilsV5SignTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task NumberUtilsV6WithJdkTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_17_refactorings') {
+
+	ignoreFailures = true
+
+	include '**/*NumberUtilsV6WithJdkTest*'
+}
+NumberUtilsV6WithJdkTest { doLast {
+	File file = file("$buildDir/reports/tests/NumberUtilsV6WithJdkTest/classes/ch17_refactorings.NumberUtilsV6WithJdkTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task TimeStampUtilsTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_17_refactorings') {
+
+	ignoreFailures = true
+
+	include '**/*TimeStampUtilsTest*'
+}
+TimeStampUtilsTest { doLast {
+	File file = file("$buildDir/reports/tests/TimeStampUtilsTest/classes/ch17_refactorings.basics.TimeStampUtilsTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+
+
+// --------------
+// CH 18
+// --------------
+
+task BuilderExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.creational.BuilderExample")  } }
+task PrototypeExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.creational.PrototypeExample")  } }
+task SimpleAdapterExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.structural.SimpleAdapterExample")  } }
+task CompositeExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.structural.CompositeExample")  } }
+task TileImageDrawingComponent 				(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.structural.TileImageDrawingComponent")  } }
+task ImageDrawingComponent 					(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.structural.ImageDrawingComponent")  } }
+task StrategyFilterBasicExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.behavioral.StrategyFilterBasicExample")  } }
+task StrategyFilterExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.behavioral.StrategyFilterExample")  } }
+task StrategyFilterExample2 					(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.behavioral.StrategyFilterExample2")  } }
+task StrategyFilterExampleJdk8_Step3			(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.behavioral.StrategyFilterExampleJdk8_Step3")  } }
+task StrategyFilterExample2_Jdk8				(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.behavioral.StrategyFilterExample2_Jdk8")  } }
+task SimpleCommandExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.behavioral.SimpleCommandExample")  } }
+task CommandExecutor 						(dependsOn: jar, group: 'Java_Profi_Chapter_18_entwurfsmuster') { doLast { executeClass("ch18_entwurfsmuster.behavioral.CommandExecutor")  } }
+
+
+
+// --------------
+// CH 19
+// --------------
+
+task TestReturnInCatch 						(dependsOn: jar, group: 'Java_Profi_Chapter_19_codingconventions') { doLast { executeClass("ch19_codingconventions.TestReturnInCatch")  } }
+
+
+
+// --------------
+// CH 20
+// --------------
+
+task MyClassTestInitial(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+
+	ignoreFailures = true
+
+	include '**/*MyClassTestInitial*'
+}
+MyClassTestInitial { doLast {
+	File file = file("$buildDir/reports/tests/MyClassTestInitial/classes/ch20_unittests.basics.MyClassTestInitial.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task MyClassTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+
+	include '**/*MyClassTest*'
+}
+// doLast wird nur bei Ausf�hrung ausgef�hrt, ansonsten w�rde es immer auch beim Test kompilieren erfolgen
+MyClassTest { doLast {
+	File file = file("$buildDir/reports/tests/MyClassTest/classes/ch20_unittests.basics.MyClassTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task DiscountCalculatorV1Test(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+
+	ignoreFailures = true
+
+	// Normale Tests und CornerCases
+	include '**/*DiscountCalculatorV1Test*'
+}
+
+DiscountCalculatorV1Test { doLast {
+	File file = file("$buildDir/reports/tests/DiscountCalculatorV1Test/classes/ch20_unittests.basics.DiscountCalculatorV1Test.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task DiscountCalculatorV1Test_CornerCases(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+
+	ignoreFailures = true
+
+	// Normale Tests und CornerCases
+	include '**/*DiscountCalculatorV1Test_CornerCases*'
+}
+
+DiscountCalculatorV1Test_CornerCases { doLast {
+	File file2 = file("$buildDir/reports/tests/DiscountCalculatorV1Test_CornerCases/classes/ch20_unittests.basics.DiscountCalculatorV1Test_CornerCases.html")
+	java.awt.Desktop.desktop.browse file2.toURI()
+} }
+
+task DiscountCalculatorV2Test(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*DiscountCalculatorV2Test*'
+}
+DiscountCalculatorV2Test { doLast {
+	File file = file("$buildDir/reports/tests/DiscountCalculatorV2Test/classes/ch20_unittests.basics.DiscountCalculatorV2Test.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task DiscountCalculatorV3Test(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*DiscountCalculatorV3Test*'
+}
+DiscountCalculatorV3Test { doLast {
+	File file = file("$buildDir/reports/tests/DiscountCalculatorV3Test/classes/ch20_unittests.basics.DiscountCalculatorV3Test.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task ControllerTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+
+	ignoreFailures = true
+
+	include '**/*ControllerTest*'
+}
+ControllerTest { doLast {
+	File file = file("$buildDir/reports/tests/ControllerTest/classes/ch20_unittests.ch20_3_real_world.ControllerTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task NameRuleTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*NameRuleTest*'
+}
+NameRuleTest { doLast {
+	File file = file("$buildDir/reports/tests/NameRuleTest/classes/ch20_unittests.ch20_4_junit_rules.NameRuleTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task TimeoutRuleTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*TimeoutRuleTest*'
+}
+TimeoutRuleTest { doLast {
+	File file = file("$buildDir/reports/tests/TimeoutRuleTest/classes/ch20_unittests.ch20_4_junit_rules.TimeoutRuleTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task ExpectedExceptionTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*ExpectedExceptionTest*'
+}
+ExpectedExceptionTest { doLast {
+	File file = file("$buildDir/reports/tests/ExpectedExceptionTest/classes/ch20_unittests.ch20_4_junit_rules.ExpectedExceptionTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task TemporaryFolderTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*TemporaryFolderTest*'
+}
+TemporaryFolderTest { doLast {
+	File file = file("$buildDir/reports/tests/TemporaryFolderTest/classes/ch20_unittests.ch20_4_junit_rules.TemporaryFolderTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task TimeoutAndExpectedExceptionTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*TimeoutAndExpectedExceptionTest*'
+}
+TimeoutAndExpectedExceptionTest { doLast {
+	File file = file("$buildDir/reports/tests/TimeoutAndExpectedExceptionTest/classes/ch20_unittests.ch20_4_junit_rules.TimeoutAndExpectedExceptionTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task ParametrizedTestExample(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*ParametrizedTestExample*'
+}
+ParametrizedTestExample { doLast {
+	File file = file("$buildDir/reports/tests/ParametrizedTestExample/classes/ch20_unittests.ch20_4_junit_rules.ParametrizedTestExample.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task ParametrizedTestExampleImproved(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*ParametrizedTestExample*'
+}
+ParametrizedTestExampleImproved { doLast {
+	File file = file("$buildDir/reports/tests/ParametrizedTestExampleImproved/classes/ch20_unittests.ch20_4_junit_rules.ParametrizedTestExampleImproved.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task ParametrizedTest_WithErrorCollector(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*ParametrizedTest_WithErrorCollector*'
+}
+ParametrizedTest_WithErrorCollector { doLast {
+	File file = file("$buildDir/reports/tests/ParametrizedTest_WithErrorCollector/classes/ch20_unittests.junit_extensions.ParametrizedTest_WithErrorCollector.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task CalculatorTest_Step0(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/CalculatorTestStep0*'
+}
+CalculatorTest_Step0 { doLast {
+	File file = file("$buildDir/reports/tests/CalculatorTest_Step0/classes/ch20_unittests.ch20_5_advanced.extractandoverride.step0.CalculatorTestStep0.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task CalculatorTest_Step1_2(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {	
+	include '**/CalculatorTestStep1_2*'
+}
+CalculatorTest_Step1_2 { doLast {
+	File file = file("$buildDir/reports/tests/CalculatorTest_Step1_2/classes/ch20_unittests.ch20_5_advanced.extractandoverride.step1_2.CalculatorTestStep1_2.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task CalculatorTest_Step3(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/CalculatorTestStep3*'
+}
+CalculatorTest_Step3 { doLast {
+	File file = file("$buildDir/reports/tests/CalculatorTest_Step3/classes/ch20_unittests.ch20_5_advanced.extractandoverride.step3_with_mockito.CalculatorTestStep3.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task MessageConcatenatorTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*MessageConcatenatorTest*'
+}
+MessageConcatenatorTest { doLast {
+	File file = file("$buildDir/reports/tests/MessageConcatenatorTest/classes/ch20_unittests.controllerexamples.MessageConcatenatorTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task SimplePersonTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*SimplePersonTest*'
+}
+SimplePersonTest { doLast {
+	File file = file("$buildDir/reports/tests/SimplePersonTest/classes/ch20_unittests.ch20_8_tools.SimplePersonTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task SimplePersonAttributesTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*SimplePersonAttributesTest*'
+}
+SimplePersonAttributesTest { doLast {
+	File file = file("$buildDir/reports/tests/SimplePersonAttributesTest/classes/ch20_unittests.ch20_8_tools.SimplePersonAttributesTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+task HamcrestExampleTest(type: Test, dependsOn: testClasses, group: 'Java_Profi_Chapter_20_unittests') {
+	include '**/*HamcrestExampleTest*'
+}
+HamcrestExampleTest { doLast {
+	File file = file("$buildDir/reports/tests/HamcrestExampleTest/classes/ch20_unittests.ch20_8_tools.HamcrestExampleTest.html")
+	java.awt.Desktop.desktop.browse file.toURI()
+} }
+
+
+
+
+
+// --------------
+// CH 21
+// --------------
+
+// -/-
+
+// --------------
+// CH 22
+// --------------
+
+task PeepholeOptimizationExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.introduction.PeepholeOptimizationExample")  } }
+
+task ListPerformanceExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.datastructures.ListPerformanceExample")  } }
+
+task ListOptimizationExample 				(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.examples.ListOptimizationExample")  } }
+task ListOptimizationExampleIOImproved 		(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.examples.ListOptimizationExampleIOImproved")  } }
+task ListOptimizationExampleIOImproved2 		(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.examples.ListOptimizationExampleIOImproved2")  } }
+task ListOptimizationExampleIOAndDSImproved  (dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.examples.ListOptimizationExampleIOAndDSImproved")  } }
+task ListOptimizationExampleOneMillion 		(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.examples.ListOptimizationExampleOneMillion")  } }
+
+task CopyFileIOPerformanceExample 			(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.iobound.CopyFileIOPerformanceExample")  } }
+
+task LruListCacheExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.memorybound.LruListCacheExample")  } }
+task BooleanPoolingOptimization 				(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.memorybound.BooleanPoolingOptimization")  } }
+task StringBenchmark 						(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.memorybound.StringBenchmark")  } }
+task VOSerializationSizeExample				(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.memorybound.VOSerializationSizeExample")  } }
+
+task FibonacciExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.cpubound.FibonacciExample")  } }
+task FibonacciBigIntegerExample				(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.cpubound.FibonacciBigIntegerExample")  } }
+task MathExpExample 							(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.cpubound.MathExpExample")  } }
+task CpuBoundOptimizationExample				(dependsOn: jar, group: 'Java_Profi_Chapter_22_optimierungen') { doLast { executeClass("ch22_optimierungen.cpubound.CpuBoundOptimizationExample")  } }
+
+
+
+
+// --------------
+// CH 99 Swing
+// --------------
+
+task FirstSwingExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.intro.FirstSwingExample")  } }
+task LayoutManagerExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.intro.LayoutManagerExample")  } }
+task FirstSwingExampleImproved 				(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.intro.FirstSwingExampleImproved")  } }
+task LayoutManagerCombinationExample 		(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.intro.LayoutManagerCombinationExample")  } }
+task ActionEventExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.intro.ActionEventExample")  } }
+task WindowClosingExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.intro.WindowClosingExample")  } }
+task ComponentEventExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.intro.ComponentEventExample")  } }
+task MouseListenerExample 					(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.intro.MouseListenerExample")  } }
+task KeyListenerExample 						(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.intro.KeyListenerExample")  } }
+task KeyListenerExampleImproved 				(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.intro.KeyListenerExampleImproved")  } }
+
+task AWTEdtExample				 			(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.multithreading_and_swing.AWTEdtExample")  } }
+task AWTEdtExample1				 			(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.multithreading_and_swing.AWTEdtExample1")  } }
+task AWTEdtExample2				 			(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.multithreading_and_swing.AWTEdtExample2")  } }
+task SwingWorkerDemo			 				(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.multithreading_and_swing.SwingWorkerDemo")  } }
+
+task JButtonRectDrawingExample			 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.painting_in_components.JButtonRectDrawingExample")  } }
+task JLabelDrawingExample				 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.painting_in_components.JLabelDrawingExample")  } }
+task JLabelWithCompoundBorderExample			(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.painting_in_components.JLabelWithCompoundBorderExample")  } }
+task DimensionAndInsetsExample			 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.painting_in_components.DimensionAndInsetsExample")  } }
+task FontMetricsExample					 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.painting_in_components.FontMetricsExample")  } }
+task FirstJava2DExample					 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.painting_in_components.java2d.FirstJava2DExample")  } }
+task Java2DPathDrawingExample			 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.painting_in_components.java2d.Java2DPathDrawingExample")  } }
+task TachoControlExample				 		(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.painting_in_components.java2d.TachoControlExample")  } }
+task TickTextFieldExample	 				(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.painting_in_components.TickTextFieldExample")  } }
+
+task JListModelExample					 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jlist.JListModelExample")  } }
+task ColoredJListExample				 		(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jlist.ColoredJListExample")  } }
+task JListSelectionExample				 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jlist.JListSelectionExample")  } }
+task JListPersonRendererExample			 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jlist.JListPersonRendererExample")  } }
+task JListModificationExample			 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jlist.JListModificationExample")  } }
+task JTableExample						 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jtable.JTableExample")  } }
+task JTableGenderRendererExample		 		(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jtable.JTableGenderRendererExample")  } }
+task JTableGenderRendererExample2		 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jtable.JTableGenderRendererExample2")  } }
+task JTableInitialSortingExample				(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jtable.JTableInitialSortingExample")  } }
+task JTableSortingAndFilteringExample		(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jtable.JTableSortingAndFilteringExample")  } }
+task JTableEditingExampleImproved			(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jtable.modifications.JTableEditingExampleImproved")  } }
+task JTreeExample						 	(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jtree.JTreeExample")  } }
+task JTreeRendererExample					(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jtree.JTreeRendererExample")  } }
+task JTreeModificationExample				(dependsOn: jar, group: 'Java_Profi_Chapter_99_gui') { doLast { executeClass("ch99_swing_gui.advanced.jtree.JTreeModificationExample")  } }
+
+
+
+
+
+
